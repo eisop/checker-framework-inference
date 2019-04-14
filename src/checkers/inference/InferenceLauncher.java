@@ -153,6 +153,11 @@ public class InferenceLauncher {
         argList.add(java);
         argList.addAll(getMemoryArgs());
 
+        String bcp = getInferenceRuntimeBootclassPath();
+        if (bcp != null) {
+            argList.add(bcp);
+        }
+
         argList.add("-classpath");
         argList.add(getInferenceRuntimeClassPath());
 
@@ -162,7 +167,7 @@ public class InferenceLauncher {
 
         argList.addAll(
                 Arrays.asList(
-                        "-ea", "-ea:checkers.inference...", 
+                        "-ea", "-ea:checkers.inference...",
                         // TODO: enable assertions.
                         "-da:org.checkerframework.framework.flow...",
                         "checkers.inference.InferenceMain",
@@ -373,6 +378,11 @@ public class InferenceLauncher {
         }
         filePaths.add(InferenceOptions.targetclasspath);
         return filePaths;
+    }
+
+    // what used as bootclass to run the compiler
+    protected String getInferenceRuntimeBootclassPath() {
+        return null;
     }
 
     // what's used to run the compiler

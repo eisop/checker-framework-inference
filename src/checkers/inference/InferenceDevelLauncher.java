@@ -18,7 +18,7 @@ import org.checkerframework.javacutil.BugInCF;
  * locations that this class would use.
  *
  * TODO: We need to think how to enable {@code InferenceDevelLauncher} to find all necessary
- * locations by itself, so that we could remove the dependency of a shell script. After achieving 
+ * locations by itself, so that we could remove the dependency of a shell script. After achieving
  * this, we could also apply the similar solution to {@code CheckerDevelMain}.
  * @author charleszhuochen
  *
@@ -27,6 +27,7 @@ public class InferenceDevelLauncher extends InferenceLauncher {
 
     private static final String PROP_PREFIX = "InferenceDevelLauncher";
     private static final String BINARY = PROP_PREFIX + ".binary";
+    private static final String RUNTIME_BCP = PROP_PREFIX + ".runtime.bcp";
     private static final String RUNTIME_CP = PROP_PREFIX + ".runtime.cp";
     private static final String VERBOSE = PROP_PREFIX + ".verbose";
     private static final String ANNOTATED_JDK = PROP_PREFIX + ".annotated.jdk";
@@ -69,6 +70,12 @@ public class InferenceDevelLauncher extends InferenceLauncher {
         InferenceOptions.checkerJar = new File (InferenceOptions.distDir, "checker.jar");
     }
 
+    // what used as bootclass to run the compiler
+    @Override
+    protected String getInferenceRuntimeBootclassPath() {
+        return "-Xbootclasspath/p:" + System.getProperty( RUNTIME_BCP );
+    }
+
     @Override
     /**
      * return the eclipse output directory instead of jars.
@@ -85,7 +92,7 @@ public class InferenceDevelLauncher extends InferenceLauncher {
     }
 
     /**
-     * TODO: we need to extract the utility methods in {@code CheckerMain} and {@code CheckerDevelMain} out to an Util Class, 
+     * TODO: we need to extract the utility methods in {@code CheckerMain} and {@code CheckerDevelMain} out to an Util Class,
      * change their visibility to public, then we can reuse them in {@code InferenceLauncher}, {@code InferenceDevelLauncher}
      * and {@code InferenceMain}.
      *
