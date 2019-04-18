@@ -73,7 +73,7 @@ public class InferenceDevelLauncher extends InferenceLauncher {
     // what used as bootclass to run the compiler
     @Override
     protected String getInferenceRuntimeBootclassPath() {
-        return "-Xbootclasspath/p:" + System.getProperty( RUNTIME_BCP );
+        return System.getProperty( RUNTIME_BCP );
     }
 
     @Override
