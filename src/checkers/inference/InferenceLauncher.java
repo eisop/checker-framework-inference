@@ -37,6 +37,9 @@ public class InferenceLauncher {
     private final PrintStream outStream;
     private final PrintStream errStream;
 
+    private static final String PROP_PREFIX = "InferenceLauncher";
+    private static final String RUNTIME_BCP = PROP_PREFIX + ".runtime.bcp";
+
     public InferenceLauncher(PrintStream outStream, PrintStream errStream) {
         this.outStream = outStream;
         this.errStream = errStream;
@@ -154,7 +157,7 @@ public class InferenceLauncher {
         argList.addAll(getMemoryArgs());
 
         String bcp = getInferenceRuntimeBootclassPath();
-        if (bcp != null) {
+        if (bcp.length() > 0) {
             argList.add("-Xbootclasspath/p:" + bcp);
         }
 
@@ -382,7 +385,7 @@ public class InferenceLauncher {
 
     // what used as bootclass to run the compiler
     protected String getInferenceRuntimeBootclassPath() {
-        return null;
+        return System.getProperty( RUNTIME_BCP );
     }
 
     // what's used to run the compiler
