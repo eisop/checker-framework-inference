@@ -157,7 +157,7 @@ public class InferenceLauncher {
         argList.addAll(getMemoryArgs());
 
         String bcp = getInferenceRuntimeBootclassPath();
-        if (bcp.length() > 0) {
+        if (bcp != null && !bcp.isEmpty()) {
             argList.add("-Xbootclasspath/p:" + bcp);
         }
 
