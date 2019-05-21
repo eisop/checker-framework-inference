@@ -27,7 +27,6 @@ public class InferenceDevelLauncher extends InferenceLauncher {
 
     private static final String PROP_PREFIX = "InferenceDevelLauncher";
     private static final String BINARY = PROP_PREFIX + ".binary";
-    private static final String RUNTIME_BCP = PROP_PREFIX + ".runtime.bcp";
     private static final String RUNTIME_CP = PROP_PREFIX + ".runtime.cp";
     private static final String VERBOSE = PROP_PREFIX + ".verbose";
     private static final String ANNOTATED_JDK = PROP_PREFIX + ".annotated.jdk";
@@ -68,12 +67,6 @@ public class InferenceDevelLauncher extends InferenceLauncher {
         InferenceOptions.distDir = new File(System.getProperty( BINARY ));
         InferenceOptions.checkersInferenceDir = InferenceOptions.distDir.getParentFile();
         InferenceOptions.checkerJar = new File (InferenceOptions.distDir, "checker.jar");
-    }
-
-    // what used as bootclass to run the compiler
-    @Override
-    protected String getInferenceRuntimeBootclassPath() {
-        return System.getProperty( RUNTIME_BCP );
     }
 
     @Override

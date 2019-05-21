@@ -63,7 +63,7 @@ fi
 
 eval "java" \
      "-DInferenceDevelLauncher.binary=${distDir} " \
-     "-DInferenceDevelLauncher.runtime.bcp=${runtimeBCP} " \
+     "-DInferenceLauncher.runtime.bcp=${runtimeBCP} " \
      "-DInferenceDevelLauncher.runtime.cp=${classpath} " \
      "-DInferenceDevelLauncher.annotated.jdk=${jdkPaths} " \
      "-classpath ${classpath} " \
