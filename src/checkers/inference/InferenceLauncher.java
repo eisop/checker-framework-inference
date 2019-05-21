@@ -38,7 +38,7 @@ public class InferenceLauncher {
     private final PrintStream errStream;
 
     private static final String PROP_PREFIX = "InferenceLauncher";
-    private static final String RUNTIME_BCP = PROP_PREFIX + ".runtime.bcp";
+    private static final String RUNTIME_BCP_PROP = PROP_PREFIX + ".runtime.bcp";
 
     public InferenceLauncher(PrintStream outStream, PrintStream errStream) {
         this.outStream = outStream;
@@ -385,7 +385,7 @@ public class InferenceLauncher {
 
     // what used as bootclass to run the compiler
     protected String getInferenceRuntimeBootclassPath() {
-        return System.getProperty( RUNTIME_BCP );
+        return System.getProperty( RUNTIME_BCP_PROP );
     }
 
     // what's used to run the compiler
