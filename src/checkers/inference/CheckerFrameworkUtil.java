@@ -24,6 +24,13 @@ public class CheckerFrameworkUtil {
         return compilerResult == Result.OK;
     }
 
+    /**
+     * This class prevents InferenceMain from being loaded by the bootstrap class
+     * loader, resulting in two instances of the class of InferenceMain in both
+     * AppClassLoader and bootstrap class loader. See
+     * https://github.com/eisop/checker-framework-inference/pull/7 and
+     * https://github.com/eisop/checker-framework-inference/pull/9
+     */
     private static class DummyJavacFileManager extends JavacFileManager {
         public DummyJavacFileManager(Context context, boolean register, Charset charset) {
             super(context, register, charset);
